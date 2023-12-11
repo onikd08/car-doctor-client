@@ -16,7 +16,7 @@ const Banner = () => {
     bannerImg6,
   ];
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full h-[calc(100vh-223px)] rounded-xl ">
       {bannerImages.map((image, idx) => (
         <Slider key={idx} image={image} idx={idx}></Slider>
       ))}

@@ -55,7 +55,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-outline btn-warning">Appointment</a>
+        <a className="btn btn-outline btn-error">Appointment</a>
       </div>
     </div>
   );
