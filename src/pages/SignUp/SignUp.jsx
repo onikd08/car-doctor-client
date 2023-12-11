@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
 const SignUp = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
   return (
     <section className="md:min-h-[calc(100vh-363px)] my-5 flex gap-x-24 flex-col max-w-4xl mx-auto overflow-hidden md:flex-row md:h-48">
       <div className="flex items-center justify-center md:w-1/2">
@@ -12,13 +20,14 @@ const SignUp = () => {
       <div className="flex items-center justify-center pb-6 md:py-0 md:w-1/2 border-2 rounded-lg">
         <div className="w-full">
           <h1 className="text-center text-4xl font-semibold">Sign Up</h1>
-          <form className="card-body">
+          <form className="card-body" onSubmit={handleRegister}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
               <input
                 type="text"
+                name="name"
                 placeholder="Name"
                 className="input input-bordered"
                 required
@@ -30,6 +39,7 @@ const SignUp = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -41,6 +51,7 @@ const SignUp = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
