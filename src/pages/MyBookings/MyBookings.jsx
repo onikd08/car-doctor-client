@@ -10,6 +10,23 @@ const MyBookings = () => {
     `http://localhost:8000/bookings/?email=${user?.email}`
   );
 
+  const handleUpdate = async (id) => {
+    const response = await fetch(`http://localhost:8000/bookings/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ status: "confirmed" }),
+    });
+    const data = await response.json();
+    if (data.modifiedCount > 0) {
+      const remaining = bookings.filter((booking) => booking._id !== id);
+      const updated = bookings.find((booking) => booking._id === id);
+      updated.status = "confirmed";
+      setBookings([updated, ...remaining]);
+    }
+  };
+
   const deleteBooking = async (id) => {
     const response = await fetch(`http://localhost:8000/bookings/${id}`, {
       method: "DELETE",
@@ -52,6 +69,7 @@ const MyBookings = () => {
                 key={booking._id}
                 booking={booking}
                 handleDeleteBooking={handleDeleteBooking}
+                handleUpdate={handleUpdate}
               ></BookingRow>
             ))}
           </tbody>

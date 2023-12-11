@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const BookingRow = ({ booking, handleDeleteBooking }) => {
+const BookingRow = ({ booking, handleDeleteBooking, handleUpdate }) => {
   const { customerName, email, serviceImg, price, date, serviceTitle, _id } =
     booking;
   return (
@@ -41,7 +41,13 @@ const BookingRow = ({ booking, handleDeleteBooking }) => {
       <td>{price}</td>
       <td>{date}</td>
       <th>
-        <button className="btn btn-error">Pending</button>
+        {booking.status ? (
+          <a className="text-lg font-semibold text-orange-500">Confirmed</a>
+        ) : (
+          <button onClick={() => handleUpdate(_id)} className="btn btn-error">
+            Pending
+          </button>
+        )}
       </th>
     </tr>
   );
@@ -50,6 +56,7 @@ const BookingRow = ({ booking, handleDeleteBooking }) => {
 BookingRow.propTypes = {
   booking: PropTypes.object.isRequired,
   handleDeleteBooking: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
 };
 
 export default BookingRow;
