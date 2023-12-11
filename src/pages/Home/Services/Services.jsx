@@ -1,4 +1,4 @@
-import useGetData from "../../hooks/useGetData";
+import useGetData from "../../../hooks/useGetData";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
