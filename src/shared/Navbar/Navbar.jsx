@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
 const Navbar = () => {
+  const { user, loading, logOutUser } = useContext(AuthContext);
   const navLinks = (
     <>
       <li>
@@ -55,6 +58,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
+        {user && !loading ? (
+          <>
+            {user.email}{" "}
+            <a className="btn mr-4" onClick={logOutUser}>
+              Logout
+            </a>
+          </>
+        ) : (
+          <a>Login</a>
+        )}
         <a className="btn btn-outline btn-error">Appointment</a>
       </div>
     </div>

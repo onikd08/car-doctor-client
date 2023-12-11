@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
 import loginImg from "../../assets/images/login/login.svg";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+
 const SignUp = () => {
-  const handleRegister = (e) => {
+  const { createUser } = useContext(AuthContext);
+  const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    //const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    createUser(email, password)
+      .then((res) => console.log(res.user))
+      .catch((err) => console.log(err.message));
   };
   return (
     <section className="md:min-h-[calc(100vh-363px)] my-5 flex gap-x-24 flex-col max-w-4xl mx-auto overflow-hidden md:flex-row md:h-48">
@@ -20,7 +26,7 @@ const SignUp = () => {
       <div className="flex items-center justify-center pb-6 md:py-0 md:w-1/2 border-2 rounded-lg">
         <div className="w-full">
           <h1 className="text-center text-4xl font-semibold">Sign Up</h1>
-          <form className="card-body" onSubmit={handleRegister}>
+          <form className="card-body" onSubmit={handleSignUp}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -63,7 +69,7 @@ const SignUp = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-error">Login</button>
+              <button className="btn btn-error">Sign Up</button>
             </div>
           </form>
           <div className="text-center">
