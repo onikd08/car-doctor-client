@@ -10,7 +10,7 @@ const useGetData = (url) => {
     };
     loadData();
   }, [url]);
-  return data;
+  return [data, setData];
 };
 
 export default useGetData;

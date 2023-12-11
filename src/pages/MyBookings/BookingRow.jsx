@@ -1,12 +1,15 @@
 import PropTypes from "prop-types";
 
-const BookingRow = ({ booking }) => {
-  const { customerName, email, serviceImg, price, date, serviceTitle } =
+const BookingRow = ({ booking, handleDeleteBooking }) => {
+  const { customerName, email, serviceImg, price, date, serviceTitle, _id } =
     booking;
   return (
     <tr>
       <th>
-        <button className="btn btn-circle btn-outline">
+        <button
+          onClick={() => handleDeleteBooking(_id)}
+          className="btn btn-sm btn-circle btn-outline"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -46,6 +49,7 @@ const BookingRow = ({ booking }) => {
 
 BookingRow.propTypes = {
   booking: PropTypes.object.isRequired,
+  handleDeleteBooking: PropTypes.func.isRequired,
 };
 
 export default BookingRow;

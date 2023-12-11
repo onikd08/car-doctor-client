@@ -2,7 +2,7 @@ import useGetData from "../../../hooks/useGetData";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
-  const services = useGetData("http://localhost:8000/services");
+  const [services] = useGetData("http://localhost:8000/services");
   return (
     <div>
       <div className="w-1/2 mx-auto text-center space-y-5">
