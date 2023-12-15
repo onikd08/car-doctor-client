@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import BookingServiceHeader from "./BookingServiceHeader";
+import useAuth from "../../hooks/useAuth";
 
 const BookService = () => {
   const service = useLoaderData();
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { price, _id, title, img } = service;
 
   const createBooking = async (booking) => {

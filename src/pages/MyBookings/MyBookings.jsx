@@ -1,14 +1,11 @@
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 import useGetData from "../../hooks/useGetData";
 import BookingRow from "./BookingRow";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const MyBookings = () => {
-  const { user } = useContext(AuthContext);
-  const [bookings, setBookings] = useGetData(
-    `http://localhost:8000/bookings/?email=${user?.email}`
-  );
+  const { user } = useAuth();
+  const [bookings, setBookings] = useGetData(`/bookings/?email=${user?.email}`);
 
   const handleUpdate = async (id) => {
     const response = await fetch(`http://localhost:8000/bookings/${id}`, {
