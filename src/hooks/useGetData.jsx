@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetData = (url) => {
   const [data, setData] = useState([]);
+  const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    const loadData = async () => {
-      const response = await fetch(url, { credentials: "include" });
-      const result = await response.json();
-      setData(result);
-    };
-    loadData();
-  }, [url]);
+    axiosSecure.get(url).then((res) => setData(res.data));
+  }, [url, axiosSecure]);
   return [data, setData];
 };
 
