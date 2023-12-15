@@ -9,7 +9,7 @@ import {
 import auth from "../firebase/firebase.init";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext("");
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

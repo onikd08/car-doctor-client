@@ -5,7 +5,7 @@ const useGetData = (url) => {
   const [data, setData] = useState([]);
   const axiosSecure = useAxiosSecure();
   useEffect(() => {
-    axiosSecure.get(url).then((res) => setData(res.data));
+    axiosSecure.get(url).then((res) => setData(res?.data));
   }, [url, axiosSecure]);
   return [data, setData];
 };
